@@ -60,4 +60,4 @@ I’ve included a copy of my resume in the assets folder. It is also accessible 
 Thanks for taking a look!
 
 ## License
-All rights reserved. All rights reserved.
+All rights reserved.
