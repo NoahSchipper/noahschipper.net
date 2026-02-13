@@ -1,4 +1,4 @@
-# Noah Schipper's Portfolio Website
+# [Noah Schipper's Portfolio Website](https://noahschipper.net)
 
 This is my personal website, built to showcase my background, technical skills, and the projects I've worked on. It is custom and responsively designed with multiple pages and a clean, modern layout.
 
