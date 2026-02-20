@@ -4,13 +4,13 @@ const skills = [
   {
     title: "JavaScript",
     type: "Language",
-    use: "Schipper Translate backend, frontend for Schipper Statlines, website work (like this display)",
+    use: "Schipper Translate, frontend for Schipper Statlines, website work (like this display)",
     icon: "⚡",
   },
   {
     title: "HTML/CSS",
     type: "Languages",
-    use: "Schipper Translate frontend, Schipper Statlines frontend, website styling",
+    use: "Schipper Translate frontend, Schipper Statlines frontend, Fragrance Finder frontend, website styling",
     icon: "🎨",
   },
   {
@@ -22,7 +22,7 @@ const skills = [
   {
     title: "Python",
     type: "Language",
-    use: "basic programs and explorations. Used with Flask in order to make backend for Schipper Statlines",
+    use: "Used with Flask in order to make the backend for Schipper Statlines and Fragrance Finder",
     icon: "🐍",
   },
   {
@@ -34,13 +34,13 @@ const skills = [
   {
     title: "C++",
     type: "Language",
-    use: "Learning about object-oriented programming, data structures, and algorithms",
+    use: "Explorations in object-oriented programming, data structures, and algorithms",
     icon: "➕",
   },
   {
     title: "SQL",
     type: "Language",
-    use: "Database management, data retrieval, and manipulation. I have knowledge in both SQLite and Postgres. Used in Schipper Statlines",
+    use: "Database management, data retrieval, and manipulation. I have knowledge in both SQLite and PostgreSQL. Used in Schipper Statlines",
     icon: "🗄️🔍",
   },
   {
@@ -74,9 +74,9 @@ const skills = [
     icon: "🛠️",
   },
   {
-    title: "API Integration",
-    type: "API",
-    use: "Schipper Translate uses API calls to translate text between languages",
+    title: "API/Library Integration",
+    type: "API/Library",
+    use: "Schipper Translate uses API calls to translate text and Fragrance Finder uses FastAPI. Schipper Statlines uses SQLAlchemy",
     icon: "🧩",
   },
 ];
