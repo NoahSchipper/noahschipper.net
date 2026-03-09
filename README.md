@@ -50,12 +50,12 @@ website/
 
 └── README.md # This file
 
-## Tools & Tech
+## Notes
+I’ve included a copy of my resume in the assets folder. It is also accessible from the homepage of the website. 
 
 I wrote everything using HTML, CSS, and JavaScript. The styling is kept consistent throughout, and everything is mobile-friendly. Some pages use animations, hover effects, and interactivity handled by custom scripts.
 
-## Notes
-I’ve included a copy of my resume in the assets folder. It is also accessible from the homepage of the website. The site is still evolving, and I regularly update it as I learn new things or build new projects.
+The site is still evolving, and I regularly update it as I learn new things or build new projects.
 
 Thanks for taking a look!
 
