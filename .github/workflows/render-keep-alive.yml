@@ -11,3 +11,4 @@ jobs:
         run: curl -s -o /dev/null -w "Service 1: %{http_code}\n" "${{ secrets.RENDER_URL_1 }}"
       - name: Ping Render service 2
         run: curl -s -o /dev/null -w "Service 2: %{http_code}\n" "${{ secrets.RENDER_URL_2 }}"
+# trigger
