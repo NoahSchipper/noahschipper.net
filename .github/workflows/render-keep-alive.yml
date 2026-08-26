@@ -1,8 +1,7 @@
-name: Keep Render Services Alive (8am-5pm CT)
+name: Keep Render Services Alive
 
 on:
   schedule:
-    # Every 10 min, 8:00am–5:50pm Central Daylight Time (13:00–21:59 UTC)
     - cron: '*/10 13-21 * * *'
   workflow_dispatch:
 
