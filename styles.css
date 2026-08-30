@@ -34,6 +34,17 @@ main {
   overflow: hidden;
 }
 
+.headshotSmall {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #4c53cb;
+  margin-top: 40px;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 0.1s forwards;
+}
+
 @keyframes backgroundShift {
   0%,
   100% {
@@ -50,6 +61,7 @@ main {
 /* Fade-in animation for content */
 .Header h1,
 .Header p,
+.headshotSmall,
 .button-row {
   position: relative;
   z-index: 1;
@@ -129,14 +141,14 @@ main {
 
 .Header h1 {
   font-size: 36px;
-  margin-top: 80px;
+  margin-top: 20px;
   color: #f4f4f4;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .Header p {
   margin: 20px;
-  font-size: 24px;
+  font-size: 22px;
   color: #f4f4f4;
   max-width: 900px;
 }
@@ -904,6 +916,12 @@ main {
     width: 100%;
   }
 
+  .headshotSmall {
+  width: 90px;
+  height: 90px;
+  margin-top: 20px;
+}
+
   .SchipperTranslate {
     flex-direction: column;
     max-width: 90%;
@@ -1466,7 +1484,7 @@ main {
   }
 
   .Header p {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .footer-container {
