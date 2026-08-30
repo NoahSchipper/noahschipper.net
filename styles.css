@@ -739,10 +739,11 @@ main {
 }
 
 .headshot img {
-  max-width: 400px;
   width: 100%;
-  height: 100%;
-  border-radius: 8px;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;   /* keeps it perfectly square at any size */
+  height: auto;           /* remove height: 100% */
+  border-radius: 50%;     /* optional: let CSS also clip to a circle as a safety net */
   object-fit: cover;
 }
 
@@ -1115,7 +1116,7 @@ main {
     margin: 15px auto;
   }
 
-  #Headshot {
+  .headshot img {
     max-width: 250px;
     min-height: 275px;
   }
