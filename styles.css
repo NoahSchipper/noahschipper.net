@@ -1135,8 +1135,9 @@ main {
   }
 
   .headshot img {
-    max-width: 250px;
-    min-height: 275px;
+    width: 120px;
+    height: 120px;
+    max-width: 120px;
   }
 
   .aboutParagraph {
