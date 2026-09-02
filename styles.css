@@ -34,6 +34,17 @@ main {
   overflow: hidden;
 }
 
+.headshotSmall {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #4c53cb;
+  margin-top: 40px;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 0.1s forwards;
+}
+
 @keyframes backgroundShift {
   0%,
   100% {
@@ -50,6 +61,7 @@ main {
 /* Fade-in animation for content */
 .Header h1,
 .Header p,
+.headshotSmall,
 .button-row {
   position: relative;
   z-index: 1;
@@ -129,14 +141,14 @@ main {
 
 .Header h1 {
   font-size: 36px;
-  margin-top: 80px;
+  margin-top: 20px;
   color: #f4f4f4;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .Header p {
   margin: 20px;
-  font-size: 24px;
+  font-size: 22px;
   color: #f4f4f4;
   max-width: 900px;
 }
@@ -739,10 +751,11 @@ main {
 }
 
 .headshot img {
-  max-width: 400px;
   width: 100%;
-  height: 100%;
-  border-radius: 8px;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;   /* keeps it perfectly square at any size */
+  height: auto;           /* remove height: 100% */
+  border-radius: 50%;     /* optional: let CSS also clip to a circle as a safety net */
   object-fit: cover;
 }
 
@@ -902,6 +915,12 @@ main {
     gap: 10px;
     width: 100%;
   }
+
+  .headshotSmall {
+  width: 90px;
+  height: 90px;
+  margin-top: 20px;
+}
 
   .SchipperTranslate {
     flex-direction: column;
@@ -1115,9 +1134,10 @@ main {
     margin: 15px auto;
   }
 
-  #Headshot {
-    max-width: 250px;
-    min-height: 275px;
+  .headshot img {
+    width: 90px;
+    height: 90px;
+    max-width: 90px;
   }
 
   .aboutParagraph {
@@ -1465,7 +1485,7 @@ main {
   }
 
   .Header p {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .footer-container {

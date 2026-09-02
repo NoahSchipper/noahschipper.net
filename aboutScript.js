@@ -1,11 +1,15 @@
-console.log("JavaScript file loaded successfully");
-
 const skills = [
   {
-    title: "JavaScript",
+    title: "Python",
     type: "Language",
-    use: "Schipper Translate, frontend for Schipper Statlines, website work (like this display)",
-    icon: "⚡",
+    use: "Used with Flask and FastAPI to build the backends for Schipper Statlines and Fragrance Finder",
+    icon: "🐍",
+  },
+  {
+    title: "R/RStudio",
+    type: "Language",
+    use: "Machine learning projects and exploration",
+    icon: "🤖",
   },
   {
     title: "HTML/CSS",
@@ -20,12 +24,6 @@ const skills = [
     icon: "☕",
   },
   {
-    title: "Python",
-    type: "Language",
-    use: "Used with Flask in order to make the backend for Schipper Statlines and Fragrance Finder",
-    icon: "🐍",
-  },
-  {
     title: "C/Assembly",
     type: "Languages",
     use: "Low-level programming, learning about computer architecture",
@@ -37,35 +35,55 @@ const skills = [
     use: "Explorations in object-oriented programming, data structures, and algorithms",
     icon: "➕",
   },
+  
   {
     title: "SQL",
     type: "Language",
-    use: "Database management, data retrieval, and manipulation. I have knowledge in both SQLite and PostgreSQL. Used in Schipper Statlines",
+    use: "SQLite and PostgreSQL, including a self-designed Postgres schema for Schipper Statlines",
     icon: "🗄️🔍",
   },
+  // midpoint
   {
-    title: "R/RStuido",
+    title: "JavaScript",
     type: "Language",
-    use: "Machine learning projects and exploration",
-    icon: "🤖"
+    use: "Schipper Translate, frontend for Schipper Statlines & Fragrance Finder",
+    icon: "⚡",
   },
   {
     title: "Flask",
     type: "Framework",
     use: "Database retrieval, URL routing, request handling. Used in the backend of Schipper Statlines",
-    icon: "🧪"
+    icon: "🧪",
   },
   {
-    title: "VS Code",
-    type: "IDE",
-    use: "Code editing, debugging, and project development",
-    icon: "🟦♾️",
+    title: "FastAPI",
+    type: "Framework",
+    use: "Powers the Fragrance Finder backend, serving semantic search over 24,000+ fragrances",
+    icon: "🚀",
   },
   {
-    title: "BlueJ",
-    type: "IDE",
-    use: "Java development, educational projects",
-    icon: "🐦🔵",
+    title: "Hugging Face",
+    type: "Library",
+    use: "Sentence Transformers for semantic search in Fragrance Finder",
+    icon: "🤗",
+  },
+  {
+    title: "SQLAlchemy",
+    type: "Library",
+    use: "ORM layer in Flask for Schipper Statlines, executing queries and formatting results for the frontend",
+    icon: "🔗",
+  },
+  {
+    title: "Supabase",
+    type: "Hosting",
+    use: "Hosts the Postgres database for Schipper Statlines, combining the Lahman Baseball database with additional datasets",
+    icon: "☁️",
+  },
+  {
+    title: "Render",
+    type: "Hosting",
+    use: "Deployment platform for Schipper Statlines, providing a live site for exploring baseball data",
+    icon: "🌐",
   },
   {
     title: "Git & GitHub",
@@ -73,12 +91,7 @@ const skills = [
     use: "Team collaboration, project tracking, and versioning",
     icon: "🛠️",
   },
-  {
-    title: "API/Library Integration",
-    type: "API/Library",
-    use: "Schipper Translate uses API calls to translate text and Fragrance Finder uses FastAPI. Schipper Statlines uses SQLAlchemy",
-    icon: "🧩",
-  },
+  
 ];
 
 let dealt = false;
