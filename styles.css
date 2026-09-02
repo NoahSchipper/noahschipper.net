@@ -1552,6 +1552,10 @@ main {
     height: 800px !important;
   }
 
+  .card-scale-wrapper {
+    transform: scale(0.9);
+    transform-origin: top center;
+  }
   /* Social Media Desktop Styles */
 
   .socialMedia h1 {
