@@ -1,7 +1,5 @@
 const modeCards = document.querySelectorAll(".similar, .byNotes, .surpriseMe");
 
-let allNotes = [];
-
 // Function to activate a card
 function activateCard(card) {
   // Check if this card is already active
@@ -157,67 +155,7 @@ async function findSimilarFragrances() {
 
 
 // MODE 2: FIND BY NOTES
-async function loadAllNotes() {
-  try {
-    const response = await fetch("https://fragrance-selector-backend.onrender.com/api/accords/list");
-    const data = await response.json();
-    allNotes = data.accords || [];
-    console.log(`Loaded ${allNotes.length} notes for autocomplete`)
-  } catch (error) {
-    console.error("Error loading notes:", error);
-  }
-}
-
 const noteInput = document.getElementById("noteInput");
-const autocompleteList = document.getElementById("autocomplete-list");
-
-noteInput.addEventListener("input", function () {
-  const value = this.value.toLowerCase().trim();
-  closeAllLists();
-
-  if (!value) {
-    return;
-  }
-
-  // Filter notes that contain the search term
-  const matches = allNotes.filter((note)=> note.includes(value)).slice(0,10);
-
-  if (matches.length === 0) {
-    return;
-  }
-
-  // Create autocomplete items
-  matches.forEach((note) => {
-    const item = document.createElement("div");
-    item.classList.add("autocomplete-item");
-
-    // Highlight matching part
-    const matchStart = note.indexOf(value);
-    const beforeMatch = note.substring(0, matchStart);
-    const match = note.substring(matchStart, matchStart + value.length);
-    const afterMatch = note.substring(matchStart + value.length);
-
-    item.innerHTML = `${beforeMatch}<strong>${match}</strong>${afterMatch}`;
-    
-    item.addEventListener("click", function () {
-      noteInput.value = note;
-      closeAllLists();
-    });
-
-    autocompleteList.appendChild(item);
-  });
-});
-
-// Close autocomplete when clicking outside
-document.addEventListener("click", function (e) {
-  if (e.target !== noteInput) {
-    closeAllLists();
-  }
-});
-
-function closeAllLists() {
-  autocompleteList.innerHTML = "";
-}
 
 async function findByNotes() {
   const noteValue = noteInput.value.trim().toLowerCase();
@@ -348,20 +286,46 @@ function displayResults(fragrances, mode, container) {
   });
 }
 
+function escapeHTML(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+// Only allow http(s) links from the API
+function safeURL(url) {
+  try {
+    const parsed = new URL(url);
+    return parsed.protocol === "https:" || parsed.protocol === "http:"
+      ? parsed.href
+      : "";
+  } catch {
+    return "";
+  }
+}
+
 function createResultCard(fragrance, mode) {
   // Clean up fragrance name (remove hyphens, capitalize)
-  const cleanName = (fragrance.Perfume || "Unknown")
-    .replace(/-/g, " ")
-    .split(" ")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const cleanName = escapeHTML(
+    String(fragrance.Perfume || "Unknown")
+      .replace(/-/g, " ")
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ")
+  );
 
   // clean up Brand name
-  const cleanBrand = (fragrance.Brand || "Unknown Brand")
-    .replace(/-/g, " ")
-    .split(" ")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const cleanBrand = escapeHTML(
+    String(fragrance.Brand || "Unknown Brand")
+      .replace(/-/g, " ")
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ")
+  );
+  const detailsURL = safeURL(fragrance.url);
 
   // Build accord badges
   const accords = [
@@ -373,7 +337,7 @@ function createResultCard(fragrance, mode) {
   ].filter((accord) => accord && accord !== ""); // Remove empty accords
 
   const accordBadges = accords
-    .map((accord) => `<span class="accord-badge">${accord}</span>`)
+    .map((accord) => `<span class="accord-badge">${escapeHTML(accord)}</span>`)
     .join("");
 
   // Build the card HTML
@@ -387,8 +351,8 @@ function createResultCard(fragrance, mode) {
             <div class="similarity-section">
                 ${
                   mode === "similar" && fragrance.similarity_score
-                    ? `<span class="similarity-badge">${Math.round(
-                        fragrance.similarity_score * 100
+                    ? `<span class="similarity-badge">${escapeHTML(
+                        Math.round(fragrance.similarity_score * 100)
                       )}% match</span>`
                     : ""
                 }
@@ -397,17 +361,17 @@ function createResultCard(fragrance, mode) {
             <div class="notes-section">
                 ${
                   fragrance.Top
-                    ? `<p class="notes"><strong>Top:</strong> ${fragrance.Top}</p>`
+                    ? `<p class="notes"><strong>Top:</strong> ${escapeHTML(fragrance.Top)}</p>`
                     : ""
                 }
                 ${
                   fragrance.Middle
-                    ? `<p class="notes"><strong>Middle:</strong> ${fragrance.Middle}</p>`
+                    ? `<p class="notes"><strong>Middle:</strong> ${escapeHTML(fragrance.Middle)}</p>`
                     : ""
                 }
                 ${
                   fragrance.Base
-                    ? `<p class="notes"><strong>Base:</strong> ${fragrance.Base}</p>`
+                    ? `<p class="notes"><strong>Base:</strong> ${escapeHTML(fragrance.Base)}</p>`
                     : ""
                 }
             </div>
@@ -417,17 +381,15 @@ function createResultCard(fragrance, mode) {
             </div>
             
             <div class="card-footer">
-                <span class="meta">${fragrance.Year || ""} ${
-    fragrance.Gender ? "• " + fragrance.Gender : ""
+                <span class="meta">${escapeHTML(fragrance.Year)} ${
+    fragrance.Gender ? "• " + escapeHTML(fragrance.Gender) : ""
   }</span>
                 ${
-                  fragrance.url
-                    ? `<a href="${fragrance.url}" target="_blank" class="view-link">View Details →</a>`
+                  detailsURL
+                    ? `<a href="${escapeHTML(detailsURL)}" target="_blank" rel="noopener noreferrer" class="view-link">View Details →</a>`
                     : ""
                 }
             </div>
         </div>
     `;
 }
-
-window.addEventListener('DOMContentLoaded', loadAllNotes);
