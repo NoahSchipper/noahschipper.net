@@ -284,6 +284,24 @@ function displayResults(fragrances, mode, container) {
     const card = createResultCard(fragrance, mode);
     container.innerHTML += card;
   });
+
+  scrollResultsIntoView(container);
+}
+
+// Scroll so the first result card is fully visible (or its top aligns if taller than the viewport)
+function scrollResultsIntoView(container) {
+  requestAnimationFrame(() => {
+    const card = container.querySelector(".result-card") || container;
+    const rect = card.getBoundingClientRect();
+    const margin = 16;
+    let delta = 0;
+    if (rect.height + margin * 2 > window.innerHeight || rect.top < margin) {
+      delta = rect.top - margin;
+    } else if (rect.bottom > window.innerHeight - margin) {
+      delta = rect.bottom - window.innerHeight + margin;
+    }
+    if (delta !== 0) window.scrollBy({ top: delta, behavior: "smooth" });
+  });
 }
 
 function escapeHTML(value) {
