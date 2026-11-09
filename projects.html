@@ -175,6 +175,21 @@
         });
       }
 
+      // Scroll so the whole carousel (card and controls) is visible (top-aligned if taller than the viewport)
+      function scrollSlideIntoView() {
+        requestAnimationFrame(() => {
+          const rect = document.querySelector('.carousel-container').getBoundingClientRect();
+          const margin = 16;
+          let delta = 0;
+          if (rect.height + margin * 2 > window.innerHeight || rect.top < margin) {
+            delta = rect.top - margin;
+          } else if (rect.bottom > window.innerHeight - margin) {
+            delta = rect.bottom - window.innerHeight + margin;
+          }
+          if (delta !== 0) window.scrollBy({ top: delta, behavior: 'smooth' });
+        });
+      }
+
       function goToSlide(index) {
         currentSlide = index;
         updateCarousel();
@@ -231,6 +246,7 @@
 
       // Start autoplay
       startAutoPlay();
+      window.addEventListener('load', scrollSlideIntoView);
 
       // Pause on hover
       track.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
